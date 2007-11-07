@@ -30,6 +30,14 @@ import java.util.Properties;
  */
 public class TypedProperties extends Properties {
 	/**
+	 * A version number for this class.
+	 * It should be changed whenever the class structure is changed (or anything
+	 * else that would prevent serialized objects being unserialized with the new 
+	 * class).
+	 */
+	private static final long serialVersionUID = 200711071;
+	
+	/**
 	 * Creates an empty property list with no default values.
 	 */
 	public TypedProperties() {
