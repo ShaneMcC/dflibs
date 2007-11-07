@@ -210,7 +210,12 @@ public class TypedProperties extends Properties {
 	 * @return the requested property, or the fallback value if not defined
 	 */
 	public char getCharProperty(final String key, final char fallback) {
-		return Character.parseChar(getProperty(key, Character.toString(fallback)));
+		final String res = getProperty(key, Character.toString(fallback));
+		if (res == null || res.isEmpty()) {
+			return fallback;
+		} else {
+			return res.charAt(0);
+		}
 	}
 	
 	/**
