@@ -51,7 +51,7 @@ public class TypedProperties extends Properties {
 	 * @param key key for property
 	 * @return True if the property exists, else false
 	 */
-	public static boolean hasProperty(final String key) {
+	public boolean hasProperty(final String key) {
 		return (getProperty(key) == null);
 	}
 	
@@ -62,7 +62,7 @@ public class TypedProperties extends Properties {
 	 * @param fallback Value to return if key is not found
 	 * @return the requested property, or the fallback value if not defined
 	 */
-	public static byte getByteProperty(final String key, final byte fallback) {
+	public byte getByteProperty(final String key, final byte fallback) {
 		return Byte.parseByte(getProperty(key, Byte.toString(fallback)));
 	}
 	
@@ -72,7 +72,7 @@ public class TypedProperties extends Properties {
 	 * @param key key for property
 	 * @param value Value for property
 	 */
-	public static void setByteProperty(final String key, final byte value) {
+	public void setByteProperty(final String key, final byte value) {
 		setProperty(key, Byte.toString(value));
 	}
 	
@@ -83,7 +83,7 @@ public class TypedProperties extends Properties {
 	 * @param fallback Value to return if key is not found
 	 * @return the requested property, or the fallback value if not defined
 	 */
-	public static short getShortProperty(final String key, final short fallback) {
+	public short getShortProperty(final String key, final short fallback) {
 		return Short.parseShort(getProperty(key, Short.toString(fallback)));
 	}
 	
@@ -93,7 +93,7 @@ public class TypedProperties extends Properties {
 	 * @param key key for property
 	 * @param value Value for property
 	 */
-	public static void setShortProperty(final String key, final short value) {
+	public void setShortProperty(final String key, final short value) {
 		setProperty(key, Short.toString(value));
 	}
 	
@@ -104,7 +104,7 @@ public class TypedProperties extends Properties {
 	 * @param fallback Value to return if key is not found
 	 * @return the requested property, or the fallback value if not defined
 	 */
-	public static int getIntProperty(final String key, final int fallback) {
+	public int getIntProperty(final String key, final int fallback) {
 		return Integer.parseInt(getProperty(key, Integer.toString(fallback)));
 	}
 	
@@ -114,7 +114,7 @@ public class TypedProperties extends Properties {
 	 * @param key key for property
 	 * @param value Value for property
 	 */
-	public static void setIntProperty(final String key, final int value) {
+	public void setIntProperty(final String key, final int value) {
 		setProperty(key, Integer.toString(value));
 	}
 	
@@ -125,7 +125,7 @@ public class TypedProperties extends Properties {
 	 * @param fallback Value to return if key is not found
 	 * @return the requested property, or the fallback value if not defined
 	 */
-	public static long getLongProperty(final String key, final long fallback) {
+	public long getLongProperty(final String key, final long fallback) {
 		return Long.parseLong(getProperty(key, Long.toString(fallback)));
 	}
 	
@@ -135,7 +135,7 @@ public class TypedProperties extends Properties {
 	 * @param key key for property
 	 * @param value Value for property
 	 */
-	public static void setLongProperty(final String key, final long value) {
+	public void setLongProperty(final String key, final long value) {
 		setProperty(key, Long.toString(value));
 	}
 	
@@ -146,7 +146,7 @@ public class TypedProperties extends Properties {
 	 * @param fallback Value to return if key is not found
 	 * @return the requested property, or the fallback value if not defined
 	 */
-	public static float getFloatProperty(final String key, final float fallback) {
+	public float getFloatProperty(final String key, final float fallback) {
 		return Float.parseFloat(getProperty(key, Float.toString(fallback)));
 	}
 	
@@ -156,7 +156,7 @@ public class TypedProperties extends Properties {
 	 * @param key key for property
 	 * @param value Value for property
 	 */
-	public static void setFloatProperty(final String key, final float value) {
+	public void setFloatProperty(final String key, final float value) {
 		setProperty(key, Float.toString(value));
 	}
 	
@@ -167,7 +167,7 @@ public class TypedProperties extends Properties {
 	 * @param fallback Value to return if key is not found
 	 * @return the requested property, or the fallback value if not defined
 	 */
-	public static double getDoubleProperty(final String key, final double fallback) {
+	public double getDoubleProperty(final String key, final double fallback) {
 		return Double.parseDouble(getProperty(key, Double.toString(fallback)));
 	}
 	
@@ -177,7 +177,7 @@ public class TypedProperties extends Properties {
 	 * @param key key for property
 	 * @param value Value for property
 	 */
-	public static void setDoubleProperty(final String key, final double value) {
+	public void setDoubleProperty(final String key, final double value) {
 		setProperty(key, Double.toString(value));
 	}
 	
@@ -188,7 +188,7 @@ public class TypedProperties extends Properties {
 	 * @param fallback Value to return if key is not found
  	 * @return the requested property, or the fallback value if not defined
 	 */
-	public static boolean getBoolProperty(final String key, final boolean fallback) {
+	public boolean getBoolProperty(final String key, final boolean fallback) {
 		return Boolean.parseBoolean(getProperty(key, Boolean.toString(fallback)));
 	}
 	
@@ -198,7 +198,7 @@ public class TypedProperties extends Properties {
 	 * @param key key for property
 	 * @param value Value for property
 	 */
-	public static void setBoolProperty(final String key, final boolean value) {
+	public void setBoolProperty(final String key, final boolean value) {
 		setProperty(key, Boolean.toString(value));
 	}
 	
@@ -209,7 +209,7 @@ public class TypedProperties extends Properties {
 	 * @param fallback Value to return if key is not found
 	 * @return the requested property, or the fallback value if not defined
 	 */
-	public static char getCharProperty(final String key, final char fallback) {
+	public char getCharProperty(final String key, final char fallback) {
 		return Character.parseChar(getProperty(key, Character.toString(fallback)));
 	}
 	
@@ -219,7 +219,7 @@ public class TypedProperties extends Properties {
 	 * @param key key for property
 	 * @param value Value for property
 	 */
-	public static void setCharProperty(final String key, final char value) {
+	public void setCharProperty(final String key, final char value) {
 		setProperty(key, Character.toString(value));
 	}
 }
