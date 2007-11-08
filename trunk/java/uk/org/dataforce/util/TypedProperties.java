@@ -23,6 +23,8 @@
  */
 package uk.org.dataforce.util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -71,7 +73,11 @@ public class TypedProperties extends Properties {
 	 * @return the requested property, or the fallback value if not defined
 	 */
 	public byte getByteProperty(final String key, final byte fallback) {
-		return Byte.parseByte(getProperty(key, Byte.toString(fallback)));
+		try {
+			return Byte.parseByte(getProperty(key, Byte.toString(fallback)));
+		} catch (NumberFormatException nfe) {
+			return fallback;
+		}
 	}
 	
 	/**
@@ -92,7 +98,11 @@ public class TypedProperties extends Properties {
 	 * @return the requested property, or the fallback value if not defined
 	 */
 	public short getShortProperty(final String key, final short fallback) {
-		return Short.parseShort(getProperty(key, Short.toString(fallback)));
+		try {
+			return Short.parseShort(getProperty(key, Short.toString(fallback)));
+		} catch (NumberFormatException nfe) {
+			return fallback;
+		}
 	}
 	
 	/**
@@ -113,7 +123,11 @@ public class TypedProperties extends Properties {
 	 * @return the requested property, or the fallback value if not defined
 	 */
 	public int getIntProperty(final String key, final int fallback) {
-		return Integer.parseInt(getProperty(key, Integer.toString(fallback)));
+		try {
+			return Integer.parseInt(getProperty(key, Integer.toString(fallback)));
+		} catch (NumberFormatException nfe) {
+			return fallback;
+		}
 	}
 	
 	/**
@@ -134,7 +148,11 @@ public class TypedProperties extends Properties {
 	 * @return the requested property, or the fallback value if not defined
 	 */
 	public long getLongProperty(final String key, final long fallback) {
-		return Long.parseLong(getProperty(key, Long.toString(fallback)));
+		try {
+			return Long.parseLong(getProperty(key, Long.toString(fallback)));
+		} catch (NumberFormatException nfe) {
+			return fallback;
+		}
 	}
 	
 	/**
@@ -155,7 +173,11 @@ public class TypedProperties extends Properties {
 	 * @return the requested property, or the fallback value if not defined
 	 */
 	public float getFloatProperty(final String key, final float fallback) {
-		return Float.parseFloat(getProperty(key, Float.toString(fallback)));
+		try {
+			return Float.parseFloat(getProperty(key, Float.toString(fallback)));
+		} catch (NumberFormatException nfe) {
+			return fallback;
+		}
 	}
 	
 	/**
@@ -176,7 +198,11 @@ public class TypedProperties extends Properties {
 	 * @return the requested property, or the fallback value if not defined
 	 */
 	public double getDoubleProperty(final String key, final double fallback) {
-		return Double.parseDouble(getProperty(key, Double.toString(fallback)));
+		try {
+			return Double.parseDouble(getProperty(key, Double.toString(fallback)));
+		} catch (NumberFormatException nfe) {
+			return fallback;
+		}
 	}
 	
 	/**
@@ -234,5 +260,43 @@ public class TypedProperties extends Properties {
 	 */
 	public void setCharProperty(final String key, final char value) {
 		setProperty(key, Character.toString(value));
+	}
+	
+	/**
+	 * Get a List property from the config.
+	 *
+	 * @param key key for property
+	 * @param fallback List to return if key is not found
+	 * @return the requested property, or the fallback value if not defined
+	 */
+	public List<String> getListProperty(final String key, final List<String> fallback) {
+		final String res = getProperty(key, "");
+		if (res == null || res.isEmpty()) {
+			return fallback;
+		} else {
+			final String bits[] = res.split("\n");
+			final ArrayList<String> result = new ArrayList<String>();
+			for (String bit : bits) {
+				result.add(bit);
+			}
+			return result;
+		}
+	}
+	
+	/**
+	 * Set a List property in the config
+	 *
+	 * @param key key for property
+	 * @param value Value for property
+	 */
+	public void setListProperty(final String key, final List<String> value) {
+		final StringBuilder val = new StringBuilder();
+		final String LF = "\n";
+		boolean first = true;
+		for (String bit : value) {
+			if (first) { first = false; } else { val.append(LF); }
+			val.append(bit);
+		}
+		setProperty(key, val.toString());
 	}
 }
