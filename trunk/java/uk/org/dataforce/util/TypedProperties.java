@@ -26,6 +26,9 @@ package uk.org.dataforce.util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.io.InputStream;
+import java.io.Reader;
+import java.io.IOException;
 
 /**
  * Properties file that allows for getting/setting of typed properties
@@ -38,6 +41,9 @@ public class TypedProperties extends Properties {
 	 * class).
 	 */
 	private static final long serialVersionUID = 200711071;
+	
+	/** Is this properties file Case Sensitive */
+	private boolean caseSensitive = true;
 	
 	/**
 	 * Creates an empty property list with no default values.
@@ -53,6 +59,110 @@ public class TypedProperties extends Properties {
 	 */
 	public TypedProperties(final Properties defaults) {
 		super(defaults);
+	}
+	
+	/**
+	 * Set case sensitivity of this properties file.
+	 *
+	 * @param value True/False for the case sensitivity of this file
+	 */
+	public void setCaseSensitivity(final boolean value) {
+		// Set all existing values to lowercase.
+		if (!value) {
+			for (Object property : this.keySet()) {
+				if (property instanceof String) {
+					final String propertyName = (String)property;
+					if (!propertyName.equals(propertyName.toLowerCase())) {
+						super.setProperty(propertyName.toLowerCase(), getProperty(propertyName));
+						super.remove(propertyName);
+					}
+				}
+			}
+		}
+		caseSensitive = value;
+	}
+	
+	/**
+	 * Load properties from an InputStream.
+	 * After loading, setCaseSensitivity(caseSensitive) is called.
+	 * If this properties file is ment to be case Insensitive, all non-lowercase
+	 * property names will be lowercased.
+	 *
+	 * @param inStream InputStream to load from.
+	 */
+	public void load(final InputStream inStream) throws IOException {
+		super.load(inStream);
+		setCaseSensitivity(caseSensitive);
+	}
+	
+	/**
+	 * Load properties from a Reader.
+	 * After loading, setCaseSensitivity(caseSensitive) is called.
+	 * If this properties file is ment to be case Insensitive, all non-lowercase
+	 * property names will be lowercased.
+	 *
+	 * @param reader Reader to load from.
+	 */
+	public void load(final Reader reader) throws IOException {
+		super.load(reader);
+		setCaseSensitivity(caseSensitive);
+	}
+	
+	/**
+	 * Load properties from an XML InputStream.
+	 * After loading, setCaseSensitivity(caseSensitive) is called.
+	 * If this properties file is ment to be case Insensitive, all non-lowercase
+	 * property names will be lowercased.
+	 *
+	 * @param inStream InputStream to load from.
+	 */
+	public void loadFromXML(final InputStream in) throws IOException {
+		super.loadFromXML(in);
+		setCaseSensitivity(caseSensitive);
+	}
+	
+	/**
+	 * Get a property from the config
+	 *
+	 * @param key key for property
+	 * @return the requested property, or null if not defined
+	 */
+	public String getProperty(final String key) {
+		if (!caseSensitive) {
+			return super.getProperty(key.toLowerCase());
+		} else {
+			return super.getProperty(key);
+		}
+	}
+	
+	/**
+	 * Get a property from the config
+	 *
+	 * @param key key for property
+	 * @param fallback Value to return if key is not found
+	 * @return the requested property, or the fallback value if not defined
+	 */
+	public String getProperty(final String key, final String fallback) {
+		if (!caseSensitive) {
+			return super.getProperty(key.toLowerCase(), fallback);
+		} else {
+			return super.getProperty(key, fallback);
+		}
+	}
+	
+	/**
+	 * Set a property in the config
+	 *
+	 * @param key key for property
+	 * @param value Value for property
+	 * @return Old value of property
+	 */
+	public Object setProperty(final String key, final String value) {
+		if (!caseSensitive) {
+			return super.setProperty(key.toLowerCase(), value);
+		} else {
+			return super.setProperty(key, value);
+		}
 	}
 	
 	/**
