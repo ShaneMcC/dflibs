@@ -48,6 +48,7 @@ public class StringParam extends CLIParam {
 	 * @param value String taken from command line to use as value.
 	 * @return true if value was valid, else false.
 	 */
+	@Override
 	public boolean setValue(final String value) {
 		myValue = value;
 		return true;
@@ -67,6 +68,7 @@ public class StringParam extends CLIParam {
 	 *
 	 * @return The value of this param as a string.
 	 */
+	@Override
 	public String getStringValue() {
 		return getValue();
 	}

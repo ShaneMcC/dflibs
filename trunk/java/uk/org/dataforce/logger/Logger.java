@@ -109,4 +109,7 @@ public class Logger {
 		logLevel = level;
 		debug2("LogLevel changed to: "+level);
 	}
+
+	/** Prevent instances of Logger */
+	private Logger() {	}
 }

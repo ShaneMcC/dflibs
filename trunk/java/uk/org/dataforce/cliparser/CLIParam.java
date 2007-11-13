@@ -52,21 +52,29 @@ public abstract class CLIParam {
 	
 	/**
 	 * Get the single character flag for this param.
+	 * 
+	 * @return Character flag used for this parameter
 	 */
 	public final char getChr() { return charFlag; }
 	
 	/**
 	 * Get the string flag for this param.
+	 * 
+	 * @return String flag used for this parameter
 	 */
 	public final String getString() { return stringFlag; }
 	
 	/**
 	 * Get the description for this param.
+	 * 
+	 * @return Desctription of this parameter
 	 */
 	public final String getDescription() { return description; }
 	
 	/**
 	 * Get the number of times this value has been given.
+	 * 
+	 * @return How many times this parameter has been requested
 	 */
 	public final int getNumber() { return number; }
 	

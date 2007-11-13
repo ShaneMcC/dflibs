@@ -59,6 +59,8 @@ public class CLIParser {
 	
 	/**
 	 * Get a reference to the CLIParser.
+	 * 
+	 * @return The reference to the CLIParser in use
 	 */
 	public static synchronized CLIParser getCLIParser() {
 		if (me == null) { me = new CLIParser(); }
@@ -90,7 +92,7 @@ public class CLIParser {
 				Logger.debug2("Added Param: [-"+param.getChr()+"]");
 			}
 			if (param.getString().length() > 0) {
-				params.put("-"+param.getString(), param);
+				params.put("-"+param.getString().toLowerCase(), param);
 				Logger.debug2("Added Param: [--"+param.getString()+"]");
 			}
 			paramList.add(param);
@@ -109,8 +111,10 @@ public class CLIParser {
 	 * @return number, or -1 if the param is invalud
 	 */
 	public int getParamNumber(final String flag) {
-		if (params.containsKey(flag)) {
-			return params.get(flag).getNumber();
+		String check = flag;
+		if (flag.length() > 1) { check = flag.toLowerCase(); }
+		if (params.containsKey(check)) {
+			return params.get(check).getNumber();
 		} else {
 			return -1;
 		}
@@ -123,8 +127,10 @@ public class CLIParser {
 	 * @return CLIParam object, or null if there is none.
 	 */
 	public CLIParam getParam(final String flag) {
-		if (params.containsKey(flag)) {
-			return params.get(flag);
+		String check = flag;
+		if (flag.length() > 1) { check = flag.toLowerCase(); }
+		if (params.containsKey(check)) {
+			return params.get(check);
 		} else {
 			return null;
 		}
@@ -163,6 +169,9 @@ public class CLIParser {
 	
 	/**
 	 * Check if the help parameter has been passed to the CLI.
+	 * 
+	 * @param args Arguments passed to CLI
+	 * @return True if the designated help parameter has been requested
 	 */
 	public boolean wantsHelp(String[] args) {
 		if (helpParam == null) { return false; }
@@ -184,6 +193,9 @@ public class CLIParser {
 	
 	/**
 	 * Show the help
+	 * 
+	 * @param title Title of application
+	 * @param usage CLI Usage String
 	 */
 	public void showHelp(final String title, final String usage) {
 		System.out.println(title);

@@ -46,4 +46,7 @@ public class MD5 {
 			return "";
 		}
 	}
+
+	/** Prevent Instances of MD5 class */
+	private MD5() {	}
 }

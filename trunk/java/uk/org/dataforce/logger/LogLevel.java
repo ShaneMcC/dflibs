@@ -69,6 +69,7 @@ public enum LogLevel {
 	 *
 	 * @return name associated with this loglevel.
 	 */
+	@Override
 	public String toString() { return myName; }
 	
 	/**

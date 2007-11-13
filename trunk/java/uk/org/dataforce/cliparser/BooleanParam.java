@@ -48,17 +48,18 @@ public class BooleanParam extends CLIParam {
 	 * @param value String taken from command line to use as value.
 	 * @return true if value was valid, else false.
 	 */
+	@Override
 	public boolean setValue(final String value) {
 		// if no value, or an empty value is given, toggle the value
 		if (value == null || value.length() == 0) {
 			myValue = !myValue;
 			return true;
 		// Check if value is a word that means "true"
-		} else if (value.equals("1") || value.equalsIgnoreCase("true") || value.equalsIgnoreCase("yes")) {
+		} else if (value.equals("1") || value.equalsIgnoreCase("true") || value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("on")) {
 			myValue = true;
 			return true;
 		// Check if value is a word that means "false"
-		} else if (value.equals("0") || value.equalsIgnoreCase("false") || value.equalsIgnoreCase("no")) {
+		} else if (value.equals("0") || value.equalsIgnoreCase("false") || value.equalsIgnoreCase("no") || value.equalsIgnoreCase("off")) {
 			myValue = false;
 			return true;
 		// The value is not a valid boolean value.
@@ -81,6 +82,7 @@ public class BooleanParam extends CLIParam {
 	 *
 	 * @return The value of this param as a string.
 	 */
+	@Override
 	public String getStringValue() {
 		return ""+getValue();
 	}

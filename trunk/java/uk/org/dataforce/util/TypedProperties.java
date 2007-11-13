@@ -89,7 +89,9 @@ public class TypedProperties extends Properties {
 	 * property names will be lowercased.
 	 *
 	 * @param inStream InputStream to load from.
+	 * @throws IOException If there is a problem reading from the Input Stream
 	 */
+	@Override
 	public void load(final InputStream inStream) throws IOException {
 		super.load(inStream);
 		setCaseSensitivity(caseSensitive);
@@ -102,7 +104,9 @@ public class TypedProperties extends Properties {
 	 * property names will be lowercased.
 	 *
 	 * @param reader Reader to load from.
+	 * @throws IOException If there is an error reading from the reader
 	 */
+	@Override
 	public void load(final Reader reader) throws IOException {
 		super.load(reader);
 		setCaseSensitivity(caseSensitive);
@@ -114,8 +118,10 @@ public class TypedProperties extends Properties {
 	 * If this properties file is ment to be case Insensitive, all non-lowercase
 	 * property names will be lowercased.
 	 *
-	 * @param inStream InputStream to load from.
+	 * @param in InputStream to load from.
+	 * @throws java.io.IOException 
 	 */
+	@Override
 	public void loadFromXML(final InputStream in) throws IOException {
 		super.loadFromXML(in);
 		setCaseSensitivity(caseSensitive);
@@ -127,6 +133,7 @@ public class TypedProperties extends Properties {
 	 * @param key key for property
 	 * @return the requested property, or null if not defined
 	 */
+	@Override
 	public String getProperty(final String key) {
 		if (!caseSensitive) {
 			return super.getProperty(key.toLowerCase());
@@ -142,6 +149,7 @@ public class TypedProperties extends Properties {
 	 * @param fallback Value to return if key is not found
 	 * @return the requested property, or the fallback value if not defined
 	 */
+	@Override
 	public String getProperty(final String key, final String fallback) {
 		if (!caseSensitive) {
 			return super.getProperty(key.toLowerCase(), fallback);
@@ -157,6 +165,7 @@ public class TypedProperties extends Properties {
 	 * @param value Value for property
 	 * @return Old value of property
 	 */
+	@Override
 	public Object setProperty(final String key, final String value) {
 		if (!caseSensitive) {
 			return super.setProperty(key.toLowerCase(), value);
