@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-package uk.org.dataforce.libs.kde;
+package uk.org.dataforce.kde;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -22,7 +22,7 @@
  * SVN: $Id$
  */
 
-package uk.org.dataforce.libs.kde;
+package uk.org.dataforce.kde;
 
 import java.awt.Component;
 import java.awt.HeadlessException;
