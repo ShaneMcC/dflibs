@@ -181,7 +181,7 @@ public class TypedProperties extends Properties {
 	 * @return True if the property exists, else false
 	 */
 	public boolean hasProperty(final String key) {
-		return (getProperty(key) == null);
+		return getProperty(key) != null;
 	}
 	
 	/**
