@@ -219,8 +219,8 @@ public class KFileChooser extends JFileChooser {
 		} else {
 			params.add("--getopenfilename");
 		}
-		if (getSelectedFile() != null && getFileSelectionMode() != DIRECTORIES_ONLY) {
-			if (getSelectedFile().getPath().indexOf('/') != 0) {
+		if (getSelectedFile() != null && getFileSelectionMode() != DIRECTORIES_ONLY && !getSelectedFile().getPath().empty()) {
+			if (getSelectedFile().getPath().charAt(0) != '/') {
 				params.add(getCurrentDirectory().getPath() + File.separator + getSelectedFile().getPath());
 			} else {
 				params.add(getSelectedFile().getPath());
@@ -267,8 +267,8 @@ public class KFileChooser extends JFileChooser {
 			params.add(getDialogTitle());
 		}
 		params.add("--getsavefilename");
-		if (getSelectedFile() != null) {
-			if (getSelectedFile().getPath().indexOf('/') != 0) {
+		if (getSelectedFile() != null && !getSelectedFile().getPath().empty()) {
+			if (getSelectedFile().getPath().charAt(0) != '/') {
 				params.add(getCurrentDirectory().getPath()  + File.separator +  getSelectedFile().getPath());
 			} else {
 				params.add(getSelectedFile().getPath());
