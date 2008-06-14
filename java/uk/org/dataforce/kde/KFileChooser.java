@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2007 Shane Mc Cormack
+ * Copyright (c) 2006-2008 Shane Mc Cormack
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,15 +35,22 @@ import javax.swing.filechooser.FileSystemView;
 
 /**
  * JFileChooser that uses KDialog to show the actual chooser.
+ * This is quite hacky, and not guarenteed to behave identically to JFileChooser,
+ * altho it tries to be as close as possible.
+ * Almost a drop in replacement for JFileChooser, replace:
+ *    new JFileChooser();
+ * with:
+ *    KFileChooser.getFileChooser();
  *
- * Drop in replacement for JFileChooser.
- * There are differences however in usage:
+ * There are obviously some differences:
  * - File filters must be set using setKDEFileFilter() not using FileFilter objects.
  * - FileSystemView's are ignored
  * - showOpenDialog and showSaveDialog shell kdialog, so only options available
  *   in kdialog work.
  * - getFileChooser() will return a JFileChooser object unless the system property
- *   "useKFileChooser" is set to "true" and kdialog is in either /usr/bin or /bin
+ *   "useKFileChooser" is set to "true" (defaults to false)
+ *   and kdialog is in either /usr/bin or /bin
+ * - Selection mode FILES_AND_DIRECTORIES can not be used
  */
 public class KFileChooser extends JFileChooser {
 	/**
@@ -52,7 +59,7 @@ public class KFileChooser extends JFileChooser {
 	 * else that would prevent serialized objects being unserialized with the new 
 	 * class).
 	 */
-	private static final long serialVersionUID = 200712141;
+	private static final long serialVersionUID = 200806141;
 	
 	/** File Filter */
 	private String fileFilter = null;
@@ -66,10 +73,6 @@ public class KFileChooser extends JFileChooser {
 	public static boolean useKFileChooser() {
 		return KDialogProcess.hasKDialog() && Boolean.parseBoolean(System.getProperty("useKFileChooser", "false"));
 	}
-	
-	//----------------------------------------------------------------------------
-	// Getter methods
-	//----------------------------------------------------------------------------
 	
 	/**
 	 * Constructs a FileChooser pointing to the user's default directory.
@@ -125,10 +128,6 @@ public class KFileChooser extends JFileChooser {
 		return useKFileChooser() ? new KFileChooser(currentDirectoryPath, fsv) : new JFileChooser(currentDirectoryPath, fsv);
 	}
 	
-	//----------------------------------------------------------------------------
-	// Constructors
-	//----------------------------------------------------------------------------
-	
 	/**
 	 * Constructs a FileChooser pointing to the user's default directory.
 	 */
@@ -183,10 +182,6 @@ public class KFileChooser extends JFileChooser {
 		super(currentDirectoryPath, fsv);
 	}
 	
-	//----------------------------------------------------------------------------
-	// Methods to do stuff!
-	//----------------------------------------------------------------------------
-	
 	/**
 	 * Set the file filter.
 	 *
@@ -225,7 +220,11 @@ public class KFileChooser extends JFileChooser {
 			params.add("--getopenfilename");
 		}
 		if (getSelectedFile() != null && getFileSelectionMode() != DIRECTORIES_ONLY) {
-			params.add(getSelectedFile().getPath());
+			if (getSelectedFile().getPath().indexOf('/') != 0) {
+				params.add(getCurrentDirectory().getPath() + File.separator + getSelectedFile().getPath());
+			} else {
+				params.add(getSelectedFile().getPath());
+			}
 		} else if (getCurrentDirectory() != null) {
 			params.add(getCurrentDirectory().getPath());
 		}
@@ -269,7 +268,11 @@ public class KFileChooser extends JFileChooser {
 		}
 		params.add("--getsavefilename");
 		if (getSelectedFile() != null) {
-			params.add(getSelectedFile().getPath());
+			if (getSelectedFile().getPath().indexOf('/') != 0) {
+				params.add(getCurrentDirectory().getPath()  + File.separator +  getSelectedFile().getPath());
+			} else {
+				params.add(getSelectedFile().getPath());
+			}
 		} else if (getCurrentDirectory() != null) {
 			params.add(getCurrentDirectory().getPath());
 		}
