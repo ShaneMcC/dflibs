@@ -41,17 +41,17 @@ public enum LogLevel {
 	/** Advanced Debugging Information. */
 	DEBUG2 (50, "Debug2"),
 	/** More Advanced Debugging Information. */
-	DEBUG3 (60, "Debug3");
+	DEBUG3 (60, "Debug3"),
 	/** Even More Advanced Debugging Information. */
-	DEBUG4 (70, "Debug4");
+	DEBUG4 (70, "Debug4"),
 	/** Yet More Advanced Debugging Information. */
-	DEBUG5 (80, "Debug5");
+	DEBUG5 (80, "Debug5"),
 	/** Loads More Advanced Debugging Information. */
-	DEBUG6 (90, "Debug6");
+	DEBUG6 (90, "Debug6"),
 	/** Stupid Amounts of Advanced Debugging Information. */
-	DEBUG7 (100, "Debug7");
+	DEBUG7 (100, "Debug7"),
 	/** Spammy Advanced Debugging Information. */
-	DEBUG8 (110, "Debug8");
+	DEBUG8 (110, "Debug8"),
 	/** Stupidly Advanced Debugging Information. */
 	DEBUG9 (120, "Debug9");
 	
