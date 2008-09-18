@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2007 Shane Mc Cormack
+ * Copyright (c) 2006-2008 Shane Mc Cormack
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -87,6 +87,69 @@ public class Logger {
 	 */
 	public static void debug2(final String data) {
 		log(LogLevel.DEBUG2, data);
+	}
+	
+	/**
+	 * Log data at the debug3 level.
+	 *
+	 * @param data Information to log.
+	 */
+	public static void debug3(final String data) {
+		log(LogLevel.DEBUG3, data);
+	}
+
+	/**
+	 * Log data at the debug4 level.
+	 *
+	 * @param data Information to log.
+	 */
+	public static void debug4(final String data) {
+		log(LogLevel.DEBUG4, data);
+	}
+
+	/**
+	 * Log data at the debug5 level.
+	 *
+	 * @param data Information to log.
+	 */
+	public static void debug5(final String data) {
+		log(LogLevel.DEBUG5, data);
+	}
+
+	/**
+	 * Log data at the debug6 level.
+	 *
+	 * @param data Information to log.
+	 */
+	public static void debug6(final String data) {
+		log(LogLevel.DEBUG6, data);
+	}
+
+	/**
+	 * Log data at the debug7 level.
+	 *
+	 * @param data Information to log.
+	 */
+	public static void debug7(final String data) {
+		log(LogLevel.DEBUG7, data);
+	}
+
+	/**
+	 * Log data at the debug8 level.
+	 *
+	 * @param data Information to log.
+	 */
+	public static void debug8(final String data) {
+		log(LogLevel.DEBUG8, data);
+	}
+
+	/**
+	 * Log data at the debug9 level.
+	 *
+	 * @param data Information to log.
+	 */
+	public static void debug9(final String data) {
+		log(LogLevel.DEBUG9, data);
 	}
 	
 	/**
