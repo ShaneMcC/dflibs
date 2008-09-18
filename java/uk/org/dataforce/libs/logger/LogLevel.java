@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2007 Shane Mc Cormack
+ * Copyright (c) 2006-2008 Shane Mc Cormack
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,21 @@ public enum LogLevel {
 	/** Debugging Information. */
 	DEBUG (40, "Debug"),
 	/** Advanced Debugging Information. */
-	DEBUG2 (50, "Debug2");
+	DEBUG2 (50, "Debug2"),
+	/** More Advanced Debugging Information. */
+	DEBUG3 (60, "Debug3");
+	/** Even More Advanced Debugging Information. */
+	DEBUG4 (70, "Debug4");
+	/** Yet More Advanced Debugging Information. */
+	DEBUG5 (80, "Debug5");
+	/** Loads More Advanced Debugging Information. */
+	DEBUG6 (90, "Debug6");
+	/** Stupid Amounts of Advanced Debugging Information. */
+	DEBUG7 (100, "Debug7");
+	/** Spammy Advanced Debugging Information. */
+	DEBUG8 (110, "Debug8");
+	/** Stupidly Advanced Debugging Information. */
+	DEBUG9 (120, "Debug9");
 	
 	/** Number for this log level. */
 	private int myLevel;
